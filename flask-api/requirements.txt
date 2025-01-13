@@ -1,0 +1,11 @@
+Flask
+pandas
+numpy
+scikit-learn
+joblib
+Flask-Cors
+selenium
+Pillow
+easyocr
+beautifulsoup4
+requests
