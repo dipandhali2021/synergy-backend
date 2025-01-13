@@ -3,7 +3,7 @@ import Challenge from '../models/Challenge.js';
 import ChallengeMetrics from '../models/ChallengeMetrics.js';
 import School from '../models/School.js';
 
-const genAI = new GoogleGenerativeAI('process.env.GEMINI_API_KEY');
+const genAI = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
 
 export const getChallenges = async (req, res) => {
   try {
@@ -76,7 +76,7 @@ export const analyzeSchoolData = async (req, res) => {
   try {
 
     const client = new GoogleGenerativeAI(
-        'process.env.GEMINI_API_KEY'
+        process.env.GEMINI_API_KEY
       );
 
     const model = client.getGenerativeModel({ model: 'gemini-1.5-flash' });

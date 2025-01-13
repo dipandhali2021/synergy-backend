@@ -5,7 +5,7 @@ import { generatePDF } from '../utils/pdfGenerator.js';
 
 export const generateReport = async (req, res) => {
   try {
-    const client = new GoogleGenerativeAI('process.env.GEMINI_API_KEY');
+    const client = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
     const model = client.getGenerativeModel({ model: 'gemini-1.5-flash' });
     const { type, customMetrics } = req.body;
     
@@ -149,7 +149,7 @@ export const createCustomReport = async (req, res) => {
   try {
     const { title, description, type, metrics } = req.body;
     
-    const client = new GoogleGenerativeAI('process.env.GEMINI_API_KEY');
+    const client = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
     const model = client.getGenerativeModel({ model: 'gemini-1.5-flash' });
     const schools = await School.find();
     

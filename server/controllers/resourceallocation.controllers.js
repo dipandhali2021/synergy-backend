@@ -482,7 +482,7 @@ export const findResourceMatches = async (req, res) => {
   try {
     const { schoolId } = req.params;
     const client = new GoogleGenerativeAI(
-      'process.env.GEMINI_API_KEY'
+      process.env.GEMINI_API_KEY
     );
 
     const model = client.getGenerativeModel({ model: 'gemini-1.5-flash' });
@@ -1060,7 +1060,7 @@ export const getschooldistribution = async (req, res) => {
 export const analyzeResourceRequests = async (req, res) => {
   try {
     const client = new GoogleGenerativeAI(
-      'process.env.GEMINI_API_KEY'
+      process.env.GEMINI_API_KEY
     );
 
     const model = client.getGenerativeModel({ model: 'gemini-1.5-flash' });

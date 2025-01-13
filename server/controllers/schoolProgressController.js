@@ -177,7 +177,7 @@ function calculateComplianceScore(schoolData) {
 async function generateRecommendations(school) {
   try {
     const client = new GoogleGenerativeAI(
-      'process.env.GEMINI_API_KEY'
+      process.env.GEMINI_API_KEY
     );
     const model = client.getGenerativeModel({ model: 'gemini-1.5-flash' });
 
@@ -262,7 +262,7 @@ async function generateRecommendations(school) {
 async function generateMilestones(recommendations) {
   try {
     const client = new GoogleGenerativeAI(
-      'process.env.GEMINI_API_KEY'
+      process.env.GEMINI_API_KEY
     );
     const model = client.getGenerativeModel({ model: 'gemini-1.5-flash' });
 
@@ -334,7 +334,7 @@ export const getRecentActivity = async (req, res) => {
 
     console.log('School history:', school.history);
 
-    const client = new GoogleGenerativeAI('process.env.GEMINI_API_KEY');
+    const client = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
     const model = client.getGenerativeModel({ model: 'gemini-1.5-flash' });
 
     // Add retry logic

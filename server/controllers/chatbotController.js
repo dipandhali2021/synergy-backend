@@ -11,7 +11,7 @@ export const askFromPDF = async (req, res) => {
     }
 
     const client = new GoogleGenerativeAI(
-      'process.env.GEMINI_API_KEY'
+      process.env.GEMINI_API_KEY
     );
     const model = client.getGenerativeModel({ model: 'gemini-1.5-flash' });
     const schools = await SchoolDetail.find();

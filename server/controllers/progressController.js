@@ -289,7 +289,7 @@ function calculateMonthlyTrends(schools) {
 
 async function generateInsights(schools) {
   try {
-    const client = new GoogleGenerativeAI('process.env.GEMINI_API_KEY');
+    const client = new GoogleGenerativeAI(process.env.GEMINI_API_KEY);
     const model = client.getGenerativeModel({ model: 'gemini-1.5-flash' });
     const prompt = `
       You are EduBot, an AI assistant helping users navigate the education portal. Based on the following school data, generate key insights in the exact JSON format below without any additional text, code blocks, or formatting:
