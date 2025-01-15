@@ -10,13 +10,26 @@ export const createSchoolDetail = async (req, res) => {
     const { schoolID } = req.body;
     console.log('Request body:', schoolID);
 
-    const dataUrl = 'http://127.0.0.1:5000/fetch-school-data';
+    const dataUrl = 'https://synergy-scraper-docker.onrender.com/fetch-school-data';
 
     const sending = {
       school_id: schoolID,
     };
 
-    const response = await axios.post(dataUrl, sending);
+    let response;
+    try {
+      response = await axios.post(dataUrl, sending, { timeout: 30000 });
+    } catch (error) {
+      if (error.code === 'ECONNABORTED') {
+        return res.status(408).json({ message: 'Request timed out after 30 seconds' });
+      }
+      return res.status(500).json({ 
+        message: 'Error fetching school data',
+        error: error.message 
+      });
+    }
+    //if error response or reponse time more than 30 sec abort and send return erro message
+    
     const schoolData = response.data;
 
     const client = new GoogleGenerativeAI(
@@ -390,7 +403,9 @@ export const createSchoolDetail = async (req, res) => {
 
     // console.log(cleanedResponse);
 
-    const apiUrl = 'http://127.0.0.1:5000/predict_school_rating';
+
+    const apiUrl = 'https://synergy-ml-model.onrender.com/predict_school_rating';
+    
 
     // Replace with your Flask API URL
 
